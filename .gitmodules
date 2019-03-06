@@ -1,3 +1,4 @@
-[submodule "DdiMon"]
-	path = DdiMon
-	url = https://github.com/tandasat/DdiMon
+
+[submodule "NestedHypervisor"]
+	path = NestedHypervisor
+	url = https://github.com/Kelvinhack/NestedHypervisor
