@@ -82,7 +82,6 @@ void EptTermination(_In_ EptData* ept_data);
 /// @param ept_data   EptData to get an EPT pointer
 _IRQL_requires_min_(DISPATCH_LEVEL) void EptHandleEptViolation(
     _In_ EptData* ept_data,
-	_In_opt_ EptData* ept_data02,
 	_In_ bool is_range_of_ept12);
 
 /// Returns an EPT entry corresponds to \a physical_address
@@ -112,8 +111,7 @@ void  EptpValidateEpt(
 );
 
 bool  EptpIsInRangesOfEpt(
-	ULONG_PTR PhysicalAddres, 
-	EptData* EptData01, 
+	ULONG_PTR	PhysicalAddres, 
 	EptCommonEntry *pml4_table
 );
 
@@ -122,6 +120,21 @@ NTSTATUS  EptpBuildNestedEpt(
 	ULONG_PTR vmcs12_va,
 	EptData* ept_data12,
 	EptData* ept_data02);
+
+void 
+EptpRefreshEpt02(
+	EptData* EptData02, 
+	EptData* EptData12, 
+	EptData* EptData01, 
+	void*    LookupEntryPa
+);
+
+EptCommonEntry*  
+EptpLookupEntryInEpt(
+	EptData* EptData, 
+	EptCommonEntry *EntryAddress
+);
+
 
 /// Reads and stores all MTRRs to set a correct memory type for EPT
 _IRQL_requires_max_(PASSIVE_LEVEL) void EptInitializeMtrrEntries();
